@@ -6,24 +6,28 @@ export const AuthContext = createContext({})
 function AuthContextProvider({children}) {
     const [auth, setAuth] = useState({
         isAuth: false,
-        user: "",
-        email: ""
+        user: null
     })
 
     function login() {
         setAuth({
             ...auth,
             isAuth: true,
-            email: "" //Hier kwam het object 'email' vandaan
+            user: {
+                username: "",
+                password: "",
+                email: "",
+            }
         })
-        console.log("login log", auth.email)
+        console.log("login log", auth.user.email)
         console.log("gebruiker is ingelogd")
     }
 
     function logout() {
         setAuth({
             ...auth,
-            isAuth: false
+            isAuth: false,
+            user: null
         })
         console.log("gebruiker is uitgelogd")
     }

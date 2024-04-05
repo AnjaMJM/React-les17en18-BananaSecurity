@@ -1,31 +1,22 @@
 import {createContext, useState} from "react";
 
-
 export const FormContext = createContext({})
 
 function FormContextProvider({children}) {
     const [formData, setFormData] = useState({
-        Name: "Name",
-        Email: "Email",
-        Password: "Password"
+        username: "",
+        email: "",
+        password: ""
     })
 
-    function login(){
-        setFormData(true)
-        console.log("gebruiker is ingelogd")
-    }
-
-    function logout(){
-        setIsAuthorized(false)
-        console.log("gebruiker is uitgelogd")
-    }
-
     const data = {
-        isAuthorized,
-        login,
-        logout
+        formData,
+        setFormData,
+        username: formData.name,
+        email: formData.email,
+        password: formData.password,
     }
-    console.log(formData)
+    console.log("form context", formData)
     return (
         <FormContext.Provider value={data}>
             {children}
@@ -33,4 +24,4 @@ function FormContextProvider({children}) {
     )
 }
 
-export default AuthContextProvider
+export default FormContextProvider

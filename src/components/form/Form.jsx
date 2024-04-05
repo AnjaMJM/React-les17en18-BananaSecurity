@@ -1,39 +1,21 @@
-import {useContext, useState} from 'react';
-import {AuthContext} from "../../context/AuthContext";
+import {useContext} from 'react';
+import {FormContext} from "../../context/FormContext";
 
 
-function Form({buttonName}) {
-    const {login} = useContext(AuthContext)
+function Form({buttonName, handleSubmit, handleChange}) {
 
-    const [formData, setFormData] = useState({
-        username: "",
-        email: "",
-        password: ""
-    })
+    const {formData, setFormData, username, email, password} = useContext(FormContext)
 
-    const {username, email, password} = formData
 
-    function onSubmit(e) {
-        e.preventDefault()
-        console.log("Naam:", username, "Email:", email, "Wachtwoord:", password)
-        login()
-    }
 
-    function handleChange(e) {
-        const changedFieldName = e.target.name;
-        setFormData({
-            ...formData,
-            [changedFieldName]: e.target.value,
-        })
-    }
 
-    console.log("from log", formData)
+    console.log("form log", formData)
 
     return (
-        <form onSubmit={onSubmit}>
-            <input type="text" name="username" value={formData.username} onChange={handleChange} placeholder="Gebruikersnaam"/>
-            <input type="email" name="email" value={formData.email} onChange={handleChange} placeholder="e-mailadres"/>
-            <input type="password" name="password" value={formData.password} onChange={handleChange} placeholder="wachtwoord"/>
+        <form onSubmit={handleSubmit}>
+            <input type="text" name="username" value={username} onChange={handleChange} placeholder="Gebruikersnaam"/>
+            <input type="email" name="email" value={email} onChange={handleChange} placeholder="e-mailadres"/>
+            <input type="password" name="password" value={password} onChange={handleChange} placeholder="wachtwoord"/>
             <button type="onsubmit">{buttonName} </button>
         </form>
     );
