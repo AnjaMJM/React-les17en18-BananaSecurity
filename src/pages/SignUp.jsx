@@ -6,11 +6,14 @@ import axios from "axios";
 
 
 function SignUp() {
+    //deze useState nooit meegeven met context, i.v.m password
     const [formData, setFormData] = useState({
         username: "",
         email: "",
         password: ""
     })
+    // destructuren van formData om de key's direct aan te kunnen spreken.
+    const {username, email, password} = formData;
 
     function handleSignUpChange(e) {
         const changedFieldName = e.target.name;
@@ -23,15 +26,13 @@ function SignUp() {
     async function handleSignUp() {
         try {
             const response = await axios.post("http://localhost:3000/register", {
-                formData
-            });
-            if (response.status === 200) {
-                console.log("gebruiker is geregistreerd")
-            }
-        } catch(err) {
+                email,
+                username,
+                password
+            });console.log("gebruiker is geregistreerd", response)
+        } catch (err) {
             console.error(err)
         }
-
 
     }
 
@@ -47,7 +48,11 @@ function SignUp() {
             <Form
                 handleChange={handleSignUpChange}
                 handleSubmit={handleSignUp}
-                buttonName="Registreren"/>
+                usernameValue={username}
+                emailValue={email}
+                passwordValue={password}
+                buttonName="Registreren"
+                signUp={true}/>
 
             <p>Heb je al een account? Je kunt je <Link to="/signin">hier</Link> inloggen.</p>
         </>

@@ -1,21 +1,13 @@
-import {useContext} from 'react';
-import {FormContext} from "../../context/FormContext";
 
 
-function Form({buttonName, handleSubmit, handleChange}) {
+function Form({buttonName, handleSubmit, handleChange, usernameValue, emailValue, passwordValue, signUp}) {
 
-    const {formData, setFormData, username, email, password} = useContext(FormContext)
-
-
-
-
-    console.log("form log", formData)
 
     return (
         <form onSubmit={handleSubmit}>
-            <input type="text" name="username" value={username} onChange={handleChange} placeholder="Gebruikersnaam"/>
-            <input type="email" name="email" value={email} onChange={handleChange} placeholder="e-mailadres"/>
-            <input type="password" name="password" value={password} onChange={handleChange} placeholder="wachtwoord"/>
+            {signUp && <input type="text" name="username" value={usernameValue} onChange={handleChange} placeholder="Gebruikersnaam"/>}
+            <input type="email" name="email" value={emailValue} onChange={handleChange} placeholder="e-mailadres"/>
+            <input type="password" name="password" value={passwordValue} onChange={handleChange} placeholder="wachtwoord"/>
             <button type="onsubmit">{buttonName} </button>
         </form>
     );

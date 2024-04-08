@@ -21,10 +21,10 @@ function NavBar() {
             </Link>
 
             <div>
-                {/*{auth.isAuth && auth.email !== "" && <p>{auth.email}</p>}*/}
+                {auth.isAuth && auth.email !== "" && <p>{auth.email}</p>}
                 {!auth.isAuth && <button
                     type="button"
-                    onClick={login}
+                    onClick={() => navigate('/signin')}
                 >
                     Log in
                 </button>}

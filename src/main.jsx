@@ -5,17 +5,14 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import AuthContextProvider from "./context/AuthContext";
-import FormContextProvider from "./context/FormContext";
 
 
 ReactDOM.render(
     <React.StrictMode>
         <Router>
-            <FormContextProvider>
-                <AuthContextProvider>
-                    <App/>
-                </AuthContextProvider>
-            </FormContextProvider>
+            <AuthContextProvider>
+                <App/>
+            </AuthContextProvider>
         </Router>
     </React.StrictMode>,
     document.getElementById('root')
