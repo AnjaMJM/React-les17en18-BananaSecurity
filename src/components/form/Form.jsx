@@ -8,7 +8,7 @@ function Form({buttonName, handleSubmit, handleChange, usernameValue, emailValue
             {signUp && <input type="text" name="username" value={usernameValue} onChange={handleChange} placeholder="Gebruikersnaam"/>}
             <input type="email" name="email" value={emailValue} onChange={handleChange} placeholder="e-mailadres"/>
             <input type="password" name="password" value={passwordValue} onChange={handleChange} placeholder="wachtwoord"/>
-            <button type="onsubmit">{buttonName} </button>
+            <button type="submit">{buttonName} </button>
         </form>
     );
 }

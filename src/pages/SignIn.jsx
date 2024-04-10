@@ -6,16 +6,18 @@ import axios from "axios";
 
 function SignIn() {
     const {login} = useContext(AuthContext)
-    const {loginData, setLoginData} = useState({
+    const [loginData, setLoginData] = useState({
         email: "",
         password: ""
     })
-
+    console.log(loginData)
     const { email, password } = loginData
 
 
-    async function handleLogin() {
+    async function handleLogin(e) {
+        e.preventDefault(); // async function heeft preventDefault nodig om te kunnen laten, anders gaat het verversen van de pagina te snel
         try {
+            console.log(email, password, loginData)
             const response = await axios.post
             ("http://localhost:3000/login", {
                 email,
@@ -26,7 +28,7 @@ function SignIn() {
                 console.log(response)
             }
         } catch (err) {
-            console.error(err)
+            console.error("inloggen mislukt", err)
         }
     }
 
